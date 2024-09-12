@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Web</title>
+</head>
+<body>
+<h1>Calculadora Web</h1>
+<input type="text" id="command" placeholder="Escribe comando">
+<button onclick="compute()">Calcular</button>
+<p id="result"></p>
+<script>
+    function compute() {
+        var command = document.getElementById("command").value;
+        fetch('/computar?comando=' + encodeURIComponent(command))
+            .then(response => response.json())
+            .then(data => document.getElementById("result").innerText = data.result)
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>
